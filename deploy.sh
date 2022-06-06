@@ -12,12 +12,12 @@ fi
 
 echo "Starting "$ENV" container"
 #app
-docker run --rm --name "$APP_NAME"-"$ENV" -v $(pwd)/hello.py:/usr/local/src/hello.py --net hello -d python:3 python /usr/local/src/hello.py
+docker run --rm --name "$APP_NAME"-"$ENV" -v $(pwd)/hello.py:/usr/local/src/hello.py --net hello -d python:slim python /usr/local/src/hello.py
 
 #nginx
-docker run --rm -d --name "$APP_NAME"-nginx --net hello -p 8080:80 nginx
+docker run --rm -d --name "$APP_NAME"-nginx --net hello  -p 80:80 nginx
 docker cp nginx-conf.d/$ENV.conf "$APP_NAME"-nginx:/etc/nginx/conf.d/default.conf
-docker run --rm --net hello nginx nginx -t
+docker run --rm  --net hello nginx nginx -t
 
 
 echo "Stopping "$OLD" container"
