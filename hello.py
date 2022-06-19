@@ -1,6 +1,6 @@
 from wsgiref.simple_server import make_server
 
-GREETING = b'Hello, world! TEST  \n'
+GREETING = b'Hello, world! TESTING DEMO  \n'
 
 def hello(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/plain')])
